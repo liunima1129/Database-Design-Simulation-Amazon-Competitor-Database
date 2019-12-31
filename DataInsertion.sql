@@ -1,0 +1,250 @@
+use AmazonCompetitorDatabase
+go
+
+--set identity_insert Customers on
+--insert Customers (CustomerID, CustomerName, CustomerUserName, EmailAddress, PhoneNumber, OrderID, WishList)
+--values
+--(10001, 'Ervin Ramos', 'Abattoir', 'ianbuck@verizon.net', '4337505839', 1000001, 'teddy bears'),
+--(10002, 'Karen Riley', 'Sergeres225', 'quinn@msn.com', '2955005125', 1000002, 'soap'),
+--(10003, 'Percy Miller', 'Blinker', 'schwaang@msn.com', '3676002934', 1000003, 'pencil'),
+--(10004, 'Glenda Pierce', 'Menagerie', 'aprakash@outlook.com', '5002674367', 1000004, 'alarm clock'),
+--(10005, 'Jack Maxwell', 'Paltrybean48', 'ingolfke@live.com', '3748935770', 1000005, 'picture frame'),
+--(10006, 'Antonio Stewart', 'Widgetmerr642', 'mbalazin@icloud.com', '7832507365', 1000006, 'rug'),
+--(10007, 'Ellis Bass', 'Scalawag', 'jbuchana@mac.com', '8684289857', 1000007, 'teddy bears'),
+--(10008, 'Paul Hammond', 'Erinaceous', 'stakasa@yahoo.com', '5459459696', 1000008, 'teddy bears'),
+--(10009, 'Gilbert Fletcher', 'Ovineson1004', 'fmerges@yahoo.com', '6882212034', 1000009, 'teddy bears'),
+--(10010, 'Manuel Hoffman', 'Canaille', 'jguyer@optonline.net', '7853612544', 1000010, 'teddy bears')
+--set identity_insert Customers off
+--go
+
+--insert ProductRatings (CustomerID, OrderID, ProductID, Score, Texts, RatingDate)
+--values
+--(10001, 1000001, 100001, 4, 'It is decent', '2019-07-30 00:06:55'),
+--(10002, 1000002, 100002, 5, 'Amazing!', '2019-04-07 19:40:07'),
+--(10003, 1000003, 100003, 3, 'It is OK.', '2019-08-05 17:45:37'),
+--(10004, 1000004, 100004, 4, 'Pretty good', '2019-03-17 15:47:44'),
+--(10005, 1000005, 100005, 4, 'It is nice', '2018-11-04 18:24:32'),
+--(10006, 1000006, 100006, 5, 'I love it.', '2019-10-18 02:55:02'),
+--(10007, 1000007, 100001, 5, 'It is amazing.', '2019-01-04 09:57:29'),
+--(10008, 1000008, 100008, 5, 'I highly recommand this.', '2019-02-19 11:32:43'),
+--(10009, 1000009, 100004, 2, 'It is horrible', '2019-10-25 03:22:53'),
+--(10010, 1000010, 100009, 3, 'Not really good', '2018-12-16 08:45:34')
+--go
+
+--insert CustomerToAddress(CustomerID, AddressID, AddressType)
+--values
+--(10001, 1001, 'Billing Address'),
+--(10001, 1011, 'Shipping Address'),
+--(10002, 1002, 'Shipping Address'),
+--(10002, 1012, 'Billing Address'),
+--(10003, 1003, 'Shipping Address'),
+--(10003, 1013, 'Billing Address'),
+--(10004, 1004, 'Shipping Address'),
+--(10004, 1014, 'Billing Address'),
+--(10005, 1005, 'Shipping Address'),
+--(10004, 1015, 'Billing Address'),
+--(10006, 1006, 'Shipping Address'),
+--(10006, 1016, 'Billing Address'),
+--(10007, 1007, 'Shipping Address'),
+--(10007, 1017, 'Billing Address'),
+--(10008, 1008, 'Shipping Address'),
+--(10008, 1018, 'Billing Address'),
+--(10009, 1009, 'Shipping Address'),
+--(10009, 1019, 'Billing Address'),
+--(10010, 1010, 'Shipping Address'),
+--(10010, 1020, 'Billing Address')
+--go
+
+--set identity_insert AddressBook on
+--insert AddressBook (AddressID, City, States, Street)
+--values
+--(1001, 'Windsor', 'Connecticut', '99 West Selby St.'),
+--(1002, 'Cantonment', 'Florida', '8915 West Elmwood St.'),
+--(1003, 'Port Jefferson Station', 'New York', '7770 Taylor Court'),
+--(1004, 'Newburgh', 'New York', '291 Glenlake St.'),
+--(1005, 'Thornton', 'Colorado', '206 Olive St.'),
+--(1006, 'Yorktown Heights', 'New York', '54 Del Monte St.'),
+--(1007, 'Egg Harbor Township', 'New Jersey', '25 Henry Smith Ave.'),
+--(2008, 'Jenison', 'Miami', '61 Marshall Dr.'),
+--(2009, 'Nashua', 'New Hampshire', '137 Smoky Hollow Court'),
+--(2010, 'Mooresville', 'North Carolina', '386 SE. Manor Station Ave.')
+--set identity_insert AddressBook off
+--go
+
+--insert OrderItems (OrderID, ProductID, Quantity, UnitPrice)
+--values
+--(1000001, 100001, 1, 13),
+--(1000002, 100002, 2, 17),
+--(1000003, 100003, 1, 21),
+--(1000004, 100004, 3, 34),
+--(1000005, 100005, 1, 24),
+--(1000006, 100006, 2, 15),
+--(1000007, 100001, 5, 13),
+--(1000008, 100008, 1, 31),
+--(1000009, 100004, 1, 34),
+--(1000010, 100009, 12, 3)
+--go
+
+--set identity_insert Orders on
+--insert Orders (OrderID, OrderStatus, OrderDate, TotalPrice, ShippingService, ShippingAddressID, ShippingFare, ExpectedShippingDate, ActualShippingDate, ShippingInformation)
+--values
+--(1000001, 'Shipped', '2019-06-01', 13, 'UPS', 1011, 5, '2019-06-04', null, ''),
+--(1000002, 'Delivered', '2019-01-10', 34, 'UPS', 1002, 5, '2019-01-15', '2019-01-14', ''),
+--(1000003, 'Delivered', '2019-07-20', 21, 'FedEx', 1003, 3, '2019-07-23', '2019-07-23', ''),
+--(1000004, 'Delivered', '2019-03-02', 102, 'USPS', 1004, 7, '2019-03-09', '2019-03-08', ''),
+--(1000005, 'Ready to go', '2018-10-24', 24, 'FedEx', 1005, 4, '2018-10-28', null, 'Not shipped'),
+--(1000006, 'Shipped', '2019-10-24', 30, 'UPS', 1006, 3, '2019-10-27', null, ''),
+--(1000007, 'Shipped', '2019-01-02', 65, 'FedEx', 1007, 3, '2019-01-06', null, ''),
+--(1000008, 'Delivered', '2019-02-06', 31, 'USPS', 1008, 6, '2019-02-11', '2019-02-12', ''),
+--(1000009, 'Return', '2019-09-20', 34, 'USPS', 1009, 10, '2019-09-29', '2019-10-02', 'Return'),
+--(1000010, 'Return', '2018-12-01', 36, 'UPS', 1010, 7, '2018-12-08', '2018-12-09', 'Return')
+--set identity_insert Orders off
+--go
+
+--set identity_insert Products on
+--insert Products (ProductID, ProductName, Descriptions, Price)
+--values
+--(100001, 'shoe laces', null, 13),
+--(100002, 'chocolate', null, 17),
+--(100003, 'lamp', null, 21),
+--(100004, 'perfume', null, 34),
+--(100005, 'hanger set', null, 24),
+--(100006, 'bowl', null, 15),
+--(100007, 'men shoes', null, 54),
+--(100008, 'charger', null, 31),
+--(100009, 'game controller', null, 34),
+--(100010, 'sponge', null, 3)
+--set identity_insert Products off
+--go
+
+--insert SupplierProducts (ProductID, SupplierID, Quantity)
+--values
+--(100001, 1012, 939),
+--(100002, 1062, 512),
+--(100003, 1030, 647),
+--(100004, 1064, 471),
+--(100005, 1001, 636),
+--(100006, 1028, 273),
+--(100001, 1070, 256),
+--(100008, 1049, 71),
+--(100004, 1004, 60),
+--(100009, 1069, 557)
+--go
+
+--set identity_insert Suppliers on
+--insert Suppliers(SupplierID, SupplierName, SupplierAddress, PhoneNumber, EmailAddress)
+--values
+--(1001, 'ceder', 2001, '(267) 869-8833', 'formis@att.net'),
+--(1002, 'skitude', 2002, '(540) 547-6197', 'eidac@comcast.net'),
+--(1003, 'execujo', 2003, '(766) 276-7248', 'ntegrity@aol.com'),
+--(1004, 'sysism', 2004, '(380) 882-9789', 'emmanuel@outlook.com'),
+--(1005, 'mupe', 2005, '(515) 425-8644', 'oevans@gmail.com'),
+--(1006, 'oyonte', 2006, '(940) 462-4911', 'fviegas@comcast.net'),
+--(1007, 'felescent', 2007, '(952) 282-6572', 'qmacro@me.com'),
+--(1008, 'aivu', 2008, '(239) 608-5787', 'goldberg@optonline.net'),
+--(1009, 'garic', 2009, '(952) 755-0886', 'garland@comcast.net'),
+--(1010, 'surise', 2010, '(624) 564-1088', 'novanet@yahoo.com')
+--set identity_insert Suppliers off
+--go
+
+--set identity_insert Warehouses on
+--insert Warehouses (WarehouseID, AddressID)
+--values
+--(108, 3004),
+--(117, 3017),
+--(101, 3002),
+--(105, 3007),
+--(107, 3015),
+--(116, 3014),
+--(102, 3001),
+--(110, 3008),
+--(120, 3011),
+--(114, 3003)
+--set identity_insert Warehouses off
+--go
+
+--insert WarehouseStorage (WarehouseID, SupplierID, ProductID, NumberInStock, NumberOnTheWay, NumberInReturn)
+--values
+--(108, 1001, 100005, 22, 77, 4),
+--(117, 1002, 100015, 42, 99, 2),
+--(101, 1003, 100010, 28, 51, 4),
+--(105, 1004, 100006, 55, 75, 15),
+--(107, 1005, 100009, 86, 26, 4),
+--(116, 1006, 100019, 57, 51, 9),
+--(102, 1007, 100020, 93, 82, 15),
+--(110, 1008, 100014, 64, 95, 0),
+--(120, 1009, 100017, 28, 41, 7),
+--(114, 1010, 100003, 31, 45, 14)
+--go
+
+
+
+--insert WarehouseStorage (WarehouseID, SupplierID, ProductID, NumberInStock, NumberOnTheWay, NumberInReturn)
+--values
+--(108, 1114, 100005, 22, 77, 4),
+--(117, 1131, 100001, 42, 99, 2),
+--(101, 1113, 100002, 28, 51, 4),
+--(105, 1100, 100006, 55, 75, 15),
+--(107, 1141, 100009, 86, 26, 4),
+--(116, 1132, 100003, 57, 51, 9),
+--(102, 1146, 100004, 93, 82, 15),
+--(110, 1125, 100008, 64, 95, 0)
+--go
+
+--insert ShippingPriceList (StartState, DestinationState, ShippingCompany, ShippingPrice)
+--values
+--('Connecticut', 'Connecticut', 'UPS', 5),
+--('Florida', 'Florida', 'UPS', 5),
+--('New York', 'New York', 'FedEx', 3),
+--('New York', 'New York', 'USPS', 4),
+--('Colorado', 'Connecticut', 'FedEx', 6),
+--('New York', 'Miami', 'UPS', 10),
+--('New Jersey', 'Connecticut', 'FedEx', 7),
+--('Miami', 'New Hampshire', 'USPS', 12),
+--('New Hampshire', 'New York', 'USPS', 10),
+--('North Carolina', 'Colorado', 'UPS', 8)
+--go
+
+--set identity_insert AddressBook on
+--insert AddressBook (AddressID, City, States, Street)
+--values
+--(3004, 'Ashburn', 'Connecticut', '7240 Charles Dr.'),
+--(3002, 'Kissimmee', 'Florida', '394 West Stillwater Dr.'),
+--(3017, 'Hickory', 'New York', '92 Linda Ave.'),
+--(3014, 'Tonawanda', 'New York', '656 Devonshire St.'),
+--(3015, 'Quakertown', 'Colorado', '377 SW. Amherst Road'),
+--(3001, 'Upper Darby', 'New York', '232 Smoky Hollow Court'),
+--(3003, 'Elgin', 'New Jersey', '667 Dunbar Drive'),
+--(3007, 'Andover', 'Miami', '41 2nd Avenue'),
+--(3008, 'Stone Mountain', 'New Hampshire', '66 E. Newcastle Street'),
+--(3011, 'Sumter', 'North Carolina', '259 Catherine Street')
+--set identity_insert AddressBook off
+--go
+
+--set identity_insert AddressBook on
+--insert AddressBook (AddressID, City, States, Street)
+--values
+--(1011, 'Windsor', 'Connecticut', '99 West Selby St.'),
+--(1012, 'Cantonment', 'Florida', '8915 West Elmwood St.'),
+--(1013, 'Port Jefferson Station', 'New York', '7770 Taylor Court'),
+--(1014, 'Newburgh', 'New York', '291 Glenlake St.'),
+--(1015, 'Thornton', 'Colorado', '206 Olive St.'),
+--(1016, 'Yorktown Heights', 'New York', '54 Del Monte St.'),
+--(1017, 'Egg Harbor Township', 'New Jersey', '25 Henry Smith Ave.'),
+--(1008, 'Calhoun', 'Miami', '7142 NE. Manor Avenue'),
+--(1009, 'Chillicothe', 'New Hampshire', '5 Honey Creek Dr.'),
+--(1010, 'Parkersburg', 'North Carolina', '65 Railroad Ave.'),
+--(1018, 'Calhoun', 'Miami', '7142 NE. Manor Avenue'),
+--(1019, 'Chillicothe', 'New Hampshire', '5 Honey Creek Dr.'),
+--(1020, 'Parkersburg', 'North Carolina', '65 Railroad Ave.')
+--set identity_insert AddressBook off
+--go
+
+--create table ShippingPriceList(
+--	StartState varchar(40) not null,
+--	DestinationState varchar(40) not null,
+--	ShippingCompany varchar(40) not null,
+--	ShippingPrice money not null,
+--	primary key(StartState, DestinationState, ShippingCompany)
+--)
+--go
